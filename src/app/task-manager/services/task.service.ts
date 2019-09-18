@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Task } from '../models/task.model';
 import { Observable } from 'rxjs';
-import 'rxjs/add/operator/map';
+import { map, catchError } from 'rxjs/operators';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
@@ -17,23 +17,21 @@ export class TaskApiService {
   ) {
   }
 
-  public getAllTasks(): Observable<Task[]> {
+  public getAllTasks(): Observable<Task> {
     return this.http
       .get(API_URL + '/todos')
-      .map(response => {
-        const todos = response.json();
-        return todos.map((todo) => new Task(todo));
-      })
-      .catch(this.handleError);
+      .pipe(map(response => {
+        return new Task(undefined, undefined, undefined, undefined, undefined);
+      }));
   }
 
   public createTask(todo: Task): Observable<Task> {
     return this.http
       .post(API_URL + '/todos', todo)
-      .map(response => {
+      .pipe(map(response => {
         return new Task(response.json());
       })
-      .catch(this.handleError);
+      .catch(this.handleError));
   }
 
   public getTaskById(todoId: number): Observable<Task> {

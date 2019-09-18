@@ -3,7 +3,7 @@ import { FormControl, Validators } from "@angular/forms";
 import { Task } from "./task.model";
 import { FormValidators } from "./validator";
 
-export class TaskFormModel {
+export class TaskCommonModel {
     public name = new FormControl();
     public priority = new FormControl();
     public parentName = new FormControl();
@@ -27,8 +27,8 @@ export class TaskFormModel {
       this.priority.valueChanges.subscribe(x => task.priority = x);
       this.priority.setValidators([Validators.required, FormValidators.priorityRange]);
 
-      this.parentName.setValue(task.parentTaskName);
-      this.parentName.valueChanges.subscribe(x => task.parentTaskName = x);
+      this.parentName.setValue(task.parentName);
+      this.parentName.valueChanges.subscribe(x => task.parentName = x);
     }
 
     private setStartDate(date: Date): void {
