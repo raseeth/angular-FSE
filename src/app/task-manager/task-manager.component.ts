@@ -1,10 +1,10 @@
 import { Component } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 
-import { TASKROUTES } from "./task-routes";
+import { TASKROUTES } from './task-routes';
 
 @Component({
-    templateUrl: "./task.component.html"
+    templateUrl: "./task-manager.component.html"
 })
 
 export class TaskManagerComponent {
