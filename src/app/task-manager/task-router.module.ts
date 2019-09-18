@@ -4,7 +4,7 @@ import { TASKROUTES } from "./task-routes";
 import { TaskManagerComponent } from './task-manager.component';
 
 const taskRoutes: Routes = [
-    { path: TASKROUTES.TASK, component: TaskManagerComponent,
+    { path: TASKROUTES.HOME, component: TaskManagerComponent,
         children: [
         ],
     }
