@@ -1,6 +1,7 @@
 import { FormGroup, FormControl } from "@angular/forms";
 import { Component, Input, OnInit } from "@angular/core";
 import { Parent } from '../models/parent.model';
+import { Observable, of } from "rxjs";
 
 @Component({
   selector: "task-common",
@@ -32,7 +33,7 @@ export class TaskCommonComponent  implements OnInit {
   }
 
   private getSourceAsObservable(taskName: string): Observable<any> {
-    const filteredData = this.parentTasks.filter((item: ParentTask) => {
+    const filteredData = this.parents.filter((item: Parent) => {
       return item ? item.name.toLowerCase().indexOf(taskName) >= 0 : undefined;
     }).map(x => x.name);
 
