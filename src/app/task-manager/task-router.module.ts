@@ -1,13 +1,17 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+
 import { TASKROUTES } from "./task-routes";
-import { TaskAddComponent } from './task-add/task-add.component';
 import { TaskManagerComponent } from './task-manager.component';
+import { TaskAddComponent } from './task-add/task-add.component';
+import { TaskViewComponent } from './task-view/task-view.component';
+
 
 const taskRoutes: Routes = [
     { path: TASKROUTES.HOME, component: TaskManagerComponent,
         children: [
           { path: TASKROUTES.ADD, component: TaskAddComponent },
+          { path: TASKROUTES.VIEW, component: TaskViewComponent },
         ],
     }
 ];

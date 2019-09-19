@@ -43,7 +43,7 @@
 
 <ng-container>
     <ng-container *ngFor="let item of taskDetails$ | async | taskSearch: taskFilter">
-        <view-task-details (onEndTask)="onEndTask($event)" [taskDetail]="item"></view-task-details>
+        <task-detail (onEndTask)="onEndTask($event)" [taskDetail]="item"></task-detail>
         <hr/>
     </ng-container>
 </ng-container>

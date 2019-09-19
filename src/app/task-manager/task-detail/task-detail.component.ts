@@ -5,7 +5,7 @@ import { TaskDetailViewModel } from '../models/task-detail.model';
   selector: 'task-detail',
   templateUrl: './task-detail.component.html'
 })
-export class ViewTaskDetailsComponent {
+export class TaskDetailsComponent {
   @Input() taskDetail: TaskDetailViewModel;
   @Output() onEndTask = new EventEmitter<TaskDetailViewModel>();
 
