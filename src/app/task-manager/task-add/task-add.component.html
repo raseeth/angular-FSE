@@ -1,45 +1,45 @@
 <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
-  <div class="form-group row">
-    <label for="task" class="col-sm-2 col-form-label">Task</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="name" formControlName="name" placeholder="Task name"> 
-      <span *ngIf="addForm.get('name').hasError('required')">This is required</span>
+  <div >
+    <label for="task">Task</label>
+    <div>
+      <input type="text" id="name" formControlName="name" placeholder="Task name"> 
+      <span *ngIf="addForm.get('name').hasError('required')">Required Field</span>
     </div>
   </div>
-  <div class="form-group row">
-    <label for="priority" class="col-sm-2 col-form-label">Priority</label>
-    <div class="col-sm-9">
-      <input type="range" class="form-control" formControlName="priority" min="0" max="30" step="1" id="priority">
-      <span *ngIf="addForm.get('priority').hasError('required')">This is required</span>
+  <div>
+    <label for="priority">Priority</label>
+    <div>
+      <input type="range" formControlName="priority" min="0" max="30" step="1" id="priority">
+      <span *ngIf="addForm.get('priority').hasError('required')">Required Field</span>
     </div>
-    <div class="col-sm-1">
+    <div>
         {{addForm.get('priority').value}}
     </div>
   </div>
-  <div class="form-group row">
-    <label for="parent" class="col-sm-2 col-form-label">Parent task</label>
-    <div class="col-sm-10">
-      <select class="form-control" formControlName="parentTaskId" id="parentTaskId">
+  <div>
+    <label for="parent">Parent task</label>
+    <div>
+      <select formControlName="parentTaskId" id="parentTaskId">
         <option [value]="task.id" *ngFor="let task of parentTasks$ | async">
           {{task.name}}
         </option>
       </select>
     </div>
   </div>
-  <div class="form-group row">
-    <label for="startDate" class="col-sm-2 col-form-label">Start date</label>
-    <div class="col-sm-10">
-      <input type="date" class="form-control" formControlName="startDate" id="startDate" placeholder="Start date">
-      <span *ngIf="addForm.get('startDate').hasError('required')">This is required</span>
+  <div>
+    <label for="startDate">Start date</label>
+    <div>
+      <input type="date" formControlName="startDate" id="startDate" placeholder="Start date">
+      <span *ngIf="addForm.get('startDate').hasError('required')">Required Field</span>
     </div>
   </div>
-  <div class="form-group row">
-    <label for="endDate" class="col-sm-2 col-form-label">End date</label>
-    <div class="col-sm-10">
-      <input type="date" class="form-control" formControlName="endDate" id="endDate" placeholder="End date">
-      <span *ngIf="addForm.get('endDate').hasError('required')">This is required</span>
+  <div>
+    <label for="endDate">End date</label>
+    <div>
+      <input type="date" formControlName="endDate" id="endDate" placeholder="End date">
+      <span *ngIf="addForm.get('endDate').hasError('required')">Required Field</span>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary p-2">Add task</button>
-  <button type="button" (click)="onReset()" class="btn btn-secondary p-2 mx-2">Reset</button>
+  <button type="submit">Add task</button>
+  <button type="button" (click)="onReset()">Reset</button>
 </form>
