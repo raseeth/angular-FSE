@@ -7,8 +7,7 @@ import { TaskApiService } from '../services/task.service';
 import { Task } from '../models/task.model';
 
 @Component({
-  templateUrl: './task-add.component.html',
-  styleUrls: ['./task-add.component.css']
+  templateUrl: './task-add.component.html'
 })
 export class TaskAddComponent implements OnInit {
 
