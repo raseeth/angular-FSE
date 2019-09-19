@@ -1,24 +1,30 @@
-<form [formGroup]="updateTaskForm" (ngSubmit)="onSubmit()">
-    <div class="form-group row">
-      <label for="task" class="col-sm-2 col-form-label">Task</label>
-      <div class="col-sm-10">
+<form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="task" updateForm>Task</label>
+      <div>
         <input type="text" class="form-control" id="task" formControlName="name" placeholder="Task name"> 
-        <span *ngIf="updateTaskForm.get('name').hasError('required')">This is required</span>
+        <div *ngIf="updateForm.get('name').hasError('required')"
+             class="alert alert-danger">
+          Task Name is required
+        </div>
       </div>
     </div>
-    <div class="form-group row">
-      <label for="priority" class="col-sm-2 col-form-label">Priority</label>
-      <div class="col-sm-9">
+    <div>
+      <label for="priority" updateForm>Priority</label>
+      <h2>
+        {{updateForm.get('priority').value}}
+    </h2>
+      <div>
         <input type="range" class="form-control" formControlName="priority" min="0" max="30" step="1" id="priority">
-        <span *ngIf="updateTaskForm.get('priority').hasError('required')">This is required</span>
-      </div>
-      <div class="col-sm-1">
-          {{updateTaskForm.get('priority').value}}
+         <div *ngIf="updateForm.get('priority').hasError('required')"
+             class="alert alert-danger">
+          Priority is required
+        </div>
       </div>
     </div>
-    <div class="form-group row">
-      <label for="parentTask" class="col-sm-2 col-form-label">Parent task</label>
-      <div class="col-sm-10">
+    <div>
+      <label for="parentTask" updateForm>Parent task</label>
+      <div>
         <select class="form-control" formControlName="parentTaskId" id="parentTaskId">
           <option [value]="task.id" *ngFor="let task of parentTasks$ | async">
             {{task.name}}
@@ -26,20 +32,27 @@
         </select>
       </div>
     </div>
-    <div class="form-group row">
-      <label for="startDate" class="col-sm-2 col-form-label">Start date</label>
-      <div class="col-sm-10">
+    <div>
+      <label for="startDate" updateForm>Start date</label>
+      <div>
         <input type="date" class="form-control" formControlName="startDate" id="startDate" placeholder="Start date">
-        <span *ngIf="updateTaskForm.get('startDate').hasError('required')">This is required</span>
+        <div *ngIf="updateForm.get('startDate').hasError('required')"
+             class="alert alert-danger">
+          Start Date is required
+        </div>
       </div>
     </div>
-    <div class="form-group row">
-      <label for="endDate" class="col-sm-2 col-form-label">End date</label>
-      <div class="col-sm-10">
+    <div>
+      <label for="endDate" updateForm>End date</label>
+      <div>
         <input type="date" class="form-control" formControlName="endDate" id="endDate" placeholder="End date">
-        <span *ngIf="updateTaskForm.get('endDate').hasError('required')">This is required</span>
+        <div *ngIf="updateForm.get('endDate').hasError('required')"
+             class="alert alert-danger">
+          End Date is required
+        </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary p-2">Update task</button>
-    <button type="button" (click)="onReset()" class="btn btn-secondary p-2 mx-2">Reset</button>
+    <br/>
+    <button type="submit" class="btn btn-success">Update</button>
+    <button type="button" (click)="onReset()" class="btn btn-default mx-2">Reset</button>
   </form>

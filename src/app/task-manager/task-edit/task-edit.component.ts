@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
 })
 export class TaskEditComponent implements OnInit {
 
-  updateTaskForm: FormGroup;
+  updateForm: FormGroup;
   parentTasks$: Observable<Task[]>;
   
   private taskId: number;
@@ -28,15 +28,15 @@ export class TaskEditComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.updateTaskForm.valid) {
-      this.taskService.updateTask(this.updateTaskForm.value as Task).subscribe(() => {
+    if (this.updateForm.valid) {
+      this.taskService.updateTask(this.updateForm.value as Task).subscribe(() => {
         alert("Saved task successfully...");
       }, () => alert("Error whilst saving your data"));
     }
   }
 
   onReset(): void {
-    this.updateTaskForm.reset();
+    this.updateForm.reset();
   }
 
   private getData() {
@@ -45,7 +45,7 @@ export class TaskEditComponent implements OnInit {
       this.taskService.getTaskById(this.taskId).subscribe((x: Task) => {
           x.startDate = this.datePipe.transform(x.startDate, 'yyyy-MM-dd');
           x.endDate = this.datePipe.transform(x.endDate, 'yyyy-MM-dd');
-          this.updateTaskForm.patchValue(x);
+          this.updateForm.patchValue(x);
         });
     });
   }
@@ -54,7 +54,7 @@ export class TaskEditComponent implements OnInit {
     this.parentTasks$ = this.taskService
       .getAllTasks().pipe(map((x: Task[])=> x.filter(x=>x.id !== this.taskId)));
     
-    this.updateTaskForm = this.formBuilder.group({
+    this.updateForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       priority: ['', [Validators.required]],
       parentTaskId: [''],
