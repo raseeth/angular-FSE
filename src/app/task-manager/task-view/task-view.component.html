@@ -1,49 +1,52 @@
-<div>
-	<div>
-		<div>
-			<label  #task for="task">Task:</label>
-      <input type="text"  [(ngModel)]="taskFilter.task" id="task">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <label  #task for="task">Task:</label>
+      <input class="form-control" type="text"  [(ngModel)]="taskFilter.task" id="task"> 
     </div>
-    <div  style="margin-top:3rem;">
-      <div >
-        <div>
-          <label  for="priorityFrom">Priority From:</label>
-          <input type="number" [(ngModel)]="taskFilter.priorityFrom" class="form-control col-sm-4" id="priorityFrom">
-        </div>
-      </div>
-      <div >
-        <div>
-          <label  for="priorityTo">Priority To:</label>
-          <input type="number" class="form-control col-sm-4" [(ngModel)]="taskFilter.priorityTo" id="priorityTo">
-        </div>
-      </div>
+    <div class="col-sm-6">
+      <label for="parentTask">Parent Task:</label>
+      <input class="form-control" type="text" [(ngModel)]="taskFilter.parentTask" id="parentTask"> 
     </div>
   </div>
-  <div >
-    <div>
-      <label  for="parentTask">Parent Task:</label>
-      <input class="form-control col-sm-10" type="text" [(ngModel)]="taskFilter.parentTask" id="parentTask">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="row">
+    <div class="col-sm-6">
+      <label  for="priorityFrom">Priority From:</label>
+          <input type="number" [(ngModel)]="taskFilter.priorityFrom" class="form-control col-sm-4" id="priorityFrom"> 
     </div>
-    <div class="row py-1">
-      <div >
-        <div>
-          <label  for="startDate">Start date:</label>
-          <input  type="date" [(ngModel)]="taskFilter.startDate" id="startDate">
-        </div>
-      </div>
-      <div >
-        <div>
-          <label  for="endDate">End date:</label>
-          <input  type="date" [(ngModel)]="taskFilter.endDate" id="endDate">
-        </div>
-      </div>
+    <div class="col-sm-6">
+      <label  for="priorityTo">Priority To:</label>
+          <input type="number" class="form-control" [(ngModel)]="taskFilter.priorityTo" id="priorityTo"> 
+    </div>
+  </div> 
+    </div>
+    <div class="col-sm-6">
+      <div class="row">
+    <div class="col-sm-6">
+      <label  for="startDate">Start date:</label>
+          <input  class="form-control" type="date" [(ngModel)]="taskFilter.startDate" id="startDate"> 
+    </div>
+    <div class="col-sm-6">
+      <label  for="endDate">End date:</label>
+          <input  class="form-control" type="date" [(ngModel)]="taskFilter.endDate" id="endDate"> 
+    </div>
+  </div> 
     </div>
   </div>
 </div>
 
-<ng-container>
+<hr/>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <ng-container>
     <ng-container *ngFor="let item of taskDetails$ | async | taskSearch: taskFilter">
         <task-detail (onEndTask)="onEndTask($event)" [taskDetail]="item"></task-detail>
         <hr/>
     </ng-container>
 </ng-container>
+      </div>
+  </div>
+</div>
