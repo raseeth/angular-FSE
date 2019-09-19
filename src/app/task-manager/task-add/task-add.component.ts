@@ -35,7 +35,8 @@ export class TaskAddComponent implements OnInit {
 
   onSubmit(): void {
     if (this.addForm.valid) {
-      this.service.updateTask(this.addForm.value as Task).subscribe(() => {
+              console.log('onsubmit');
+      this.service.createTask(this.addForm.value as Task).subscribe(() => {
         this.onReset();
       }, () => alert("Error"));
     }
