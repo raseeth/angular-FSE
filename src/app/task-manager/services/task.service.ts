@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Task } from '../models/task.model';
 import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, flatMap } from 'rxjs/operators';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
@@ -13,54 +13,23 @@ const API_URL = "";
 export class TaskApiService {
 
   constructor(
-    private http: Http
+    private httpClient: HttpClient
   ) {
   }
 
-  public getAllTasks(): Observable<Task> {
-    return this.http
-      .get(API_URL + '/todos')
-      .pipe(map(response => {
-        return new Task(undefined, undefined, undefined, undefined, undefined);
-      }));
+  public getAllTasks(): Observable<Task[]> {
+    return this.httpClient.get(`${API_URL}/task`).pipe(map((response: Task[]) => response));
   }
 
-  public createTask(todo: Task): Observable<Task> {
-    return this.http
-      .post(API_URL + '/todos', todo)
-      .pipe(map(response => {
-        return new Task(response.json());
-      })
-      .catch(this.handleError));
+  public createTask(task: Task): Observable<any> {
+    return this.httpClient.post(`${API_URL}/tasks`, task);
   }
 
-  public getTaskById(todoId: number): Observable<Task> {
-    return this.http
-      .get(API_URL + '/todos/' + todoId)
-      .map(response => {
-        return new Task(response.json());
-      })
-      .catch(this.handleError);
+  public getTaskById(taskId: number): Observable<Task> {
+    return this.httpClient.get(`${API_URL}/task/${taskId}`).pipe(map((response:Task) => response));
   }
 
-  public updateTask(todo: Task): Observable<Task> {
-    return this.http
-      .put(API_URL + '/todos/' + todo.id, todo)
-      .map(response => {
-        return new Task(response.json());
-      })
-      .catch(this.handleError);
-  }
-
-  public deleteTaskById(todoId: number): Observable<null> {
-    return this.http
-      .delete(API_URL + '/todos/' + todoId)
-      .map(response => null)
-      .catch(this.handleError);
-  }
-
-  private handleError (error: Response | any) {
-    console.error('ApiService::handleError', error);
-    return Observable.throw(error);
+  public updateTask(task: Task): Observable<any> {
+    return this.httpClient.put(`${API_URL}/tasks/${task.id}`, task);
   }
 }
