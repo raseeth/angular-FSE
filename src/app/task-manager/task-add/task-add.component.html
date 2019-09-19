@@ -1,9 +1,9 @@
 <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
   <div >
     <label for="name">Task</label>
-    <div class="form-group" >
-      <input class="form-control" type="text" id="name" name="name" placeholder="Task name"> 
-      <div [hidden]="name || name"
+    <div class="form-group">
+      <input class="form-control" type="text" id="name" formControlName="name" placeholder="Task name"> 
+      <div *ngIf="addForm.get('name').hasError('required')"
              class="alert alert-danger">
           Task Name is required
         </div>
@@ -11,13 +11,16 @@
   </div>
   <div>
     <label for="priority">Priority</label>
-    <div>
+    <div  class="form-group">
       <input type="range" formControlName="priority" min="0" max="30" step="1" id="priority">
-      <span *ngIf="addForm.get('priority').hasError('required')">Required Field</span>
+      <div *ngIf="addForm.get('priority').hasError('required')"
+             class="alert alert-danger">
+          Priority is required
+        </div>
     </div>
-    <div>
+    <h2>
         {{addForm.get('priority').value}}
-    </div>
+    <h2>
   </div>
   <div>
     <label for="parent">Parent task</label>
