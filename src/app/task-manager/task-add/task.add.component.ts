@@ -12,14 +12,13 @@ import { Task } from '../models/task.model';
 })
 export class TaskAddComponent implements OnInit {
 
-  parents$: Observable<Task[]>;
-  addTaskForm: FormGroup;
-
+  parents: Observable<Task[]>;
+  addForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private service: TaskApiService) { }
 
   ngOnInit() {
-    this.addTaskForm = this.formBuilder.group({
+    this.addForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       priority: ['', [Validators.required]],
       parentTaskId: [''],
@@ -27,19 +26,20 @@ export class TaskAddComponent implements OnInit {
       endDate: ['', [Validators.required]],
     });
 
-    this.parents$ = this.service.getAllTasks();
-  }
-
-  onSubmit(): void {
-    if (this.addTaskForm.valid) {
-      this.service.post(this.addTaskForm.value as TaskDetailViewModel).subscribe(() => {
-        alert("Saved task successfully...");
-        this.onReset();
-      }, () => alert("Error whilst saving your data"));
-    }
+    this.parents = this.service.getAllTasks();
   }
 
   onReset(): void {
-    this.addTaskForm.reset();
+    this.addForm.reset();
   }
+
+  onSubmit(): void {
+    if (this.addForm.valid) {
+      this.service.updateTask(this.addForm.value as Task).subscribe(() => {
+        this.onReset();
+      }, () => alert("Error"));
+    }
+  }
+
+  
 }
