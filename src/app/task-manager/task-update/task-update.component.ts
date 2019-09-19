@@ -54,7 +54,7 @@ export class UpdateTaskComponent implements OnInit {
 
   private initializeForm() {
     this.parentTasks$ = this.taskService
-      .get().pipe(map((x: TaskDetailViewModel[])=> x.filter(x=>x.id !== this.taskId)));
+      .getAllTasks().pipe(map((x: Task[])=> x.filter(x=>x.id !== this.taskId)));
     
     this.updateTaskForm = this.formBuilder.group({
       name: ['', [Validators.required]],
