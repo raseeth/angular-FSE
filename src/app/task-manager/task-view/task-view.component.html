@@ -1,0 +1,49 @@
+<div>
+	<div>
+		<div>
+			<label  #task for="task">Task:</label>
+      <input type="text"  [(ngModel)]="taskFilter.task" id="task">
+    </div>
+    <div  style="margin-top:3rem;">
+      <div >
+        <div>
+          <label  for="priorityFrom">Priority From:</label>
+          <input type="number" [(ngModel)]="taskFilter.priorityFrom" class="form-control col-sm-4" id="priorityFrom">
+        </div>
+      </div>
+      <div >
+        <div>
+          <label  for="priorityTo">Priority To:</label>
+          <input type="number" class="form-control col-sm-4" [(ngModel)]="taskFilter.priorityTo" id="priorityTo">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div >
+    <div>
+      <label  for="parentTask">Parent Task:</label>
+      <input class="form-control col-sm-10" type="text" [(ngModel)]="taskFilter.parentTask" id="parentTask">
+    </div>
+    <div class="row py-1">
+      <div >
+        <div>
+          <label  for="startDate">Start date:</label>
+          <input  type="date" [(ngModel)]="taskFilter.startDate" id="startDate">
+        </div>
+      </div>
+      <div >
+        <div>
+          <label  for="endDate">End date:</label>
+          <input  type="date" [(ngModel)]="taskFilter.endDate" id="endDate">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container>
+    <ng-container *ngFor="let item of taskDetails$ | async | taskSearch: taskFilter">
+        <view-task-details (onEndTask)="onEndTask($event)" [taskDetail]="item"></view-task-details>
+        <hr/>
+    </ng-container>
+</ng-container>
