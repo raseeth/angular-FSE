@@ -4,8 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Task } from '../models/task.model';
 import { Observable } from 'rxjs';
 import { map, catchError, flatMap } from 'rxjs/operators';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/observable/throw';
 
 const API_URL = "";
 
