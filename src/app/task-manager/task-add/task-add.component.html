@@ -1,9 +1,12 @@
 <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
   <div >
-    <label for="task">Task</label>
-    <div>
-      <input type="text" id="name" formControlName="name" placeholder="Task name"> 
-      <span *ngIf="addForm.get('name').hasError('required')">Required Field</span>
+    <label for="name">Task</label>
+    <div class="form-group" >
+      <input class="form-control" type="text" id="name" name="name" placeholder="Task name"> 
+      <div [hidden]="name || name"
+             class="alert alert-danger">
+          Task Name is required
+        </div>
     </div>
   </div>
   <div>
