@@ -31,7 +31,7 @@
     </div>
   </div>
   <div class="col-sm-1" *ngIf="!taskDetail?.taskEnded">
-    <a class="mt-4 btn btn-success" [routerLink]="['/update-task', taskDetail?.id]">
+    <a class="mt-4 btn btn-success" [routerLink]="['/edit/', taskDetail?.id]">
         Edit
     </a>
   </div>

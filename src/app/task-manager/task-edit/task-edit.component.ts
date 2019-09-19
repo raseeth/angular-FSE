@@ -8,10 +8,9 @@ import { Task } from '../models/task.model';
 import { DatePipe } from '@angular/common';
 
 @Component({
-  templateUrl: './update-task.component.html',
-  styleUrls: ['./update-task.component.css']
+  templateUrl: './task-edit.component.html'
 })
-export class UpdateTaskComponent implements OnInit {
+export class TaskEditComponent implements OnInit {
 
   updateTaskForm: FormGroup;
   parentTasks$: Observable<Task[]>;
@@ -25,7 +24,6 @@ export class UpdateTaskComponent implements OnInit {
 
   ngOnInit() {
     this.initializeForm();
-
     this.getData();
   }
 
